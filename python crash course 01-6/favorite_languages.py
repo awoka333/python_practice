@@ -1,13 +1,15 @@
 favorite_languages = {
-	'jen': 'python',
-	'sarah': 'c',
-	'edward': 'ruby',
-	'phil': 'python',
+	'jen': ['python', 'ruby'],
+	'sarah': ['c'],
+	'edward': ['ruby', 'go'],
+	'phil': ['python', 'haskell'],
 	}
-friends = ['phil', 'sarah']
+# friends = ['phil', 'sarah']
 
-# for name, language in favorite_languages.items():
-# 	print(f"{name.title()}の好きなプログラミング言語は{language.title()}です。")
+for name, languages in favorite_languages.items():
+	print(f"\n{name.title()}の好きな言語")
+	for language in languages:
+		print(f"\t{language.title()}")
 
 # for name in favorite_languages.keys():
 # 	print(name.title())
@@ -18,7 +20,7 @@ friends = ['phil', 'sarah']
 # for name in sorted(favorite_languages.keys()):
 # 	print(f"{name.title()}、投票ありがとう。")
 
-print("以下の言語が投票されました。")
-for language in set(favorite_languages.values()):
-	print(language.title())
+# print("以下の言語が投票されました。")
+# for language in set(favorite_languages.values()):
+# 	print(language.title())
 	# setだと一意になり、重複をなくせる。
