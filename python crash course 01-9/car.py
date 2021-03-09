@@ -1,5 +1,5 @@
 class Car:
-	"""自動車を表すシンプルな実装例"""
+	"""ガソリン車と電気自動車を表すために使用できるクラスの集まり"""
 
 	def __init__(self, make, model, year):
 		"""自動車の特徴となる属性を初期化する"""
@@ -32,17 +32,34 @@ class Car:
 		self.odometer_reading += km
 
 
-my_new_car = Car('audi', 'a4', 2019)
-print(my_new_car.get_descriptive_name())
-my_new_car.update_odometer(-1)
-my_new_car.read_odometer()
+class Battery:
+	"""電気自動車のバッテリーをモデル化したシンプルな実装例"""
+
+	def __init__(self, battery_size=75):
+		"""バッテリーの属性を初期化する"""
+		self.battery_size = battery_size
+
+	def describe_battery(self):
+		"""バッテリーサイズの説明文を出力する"""
+		print(f"この車のバッテリーは{self.battery_size}-kWhです。")
+
+	def get_range(self):
+		"""バッテリーが提供する航続距離を示すメッセージを出力する"""
+		if self.battery_size == 75:
+			range = 420
+		elif self.battery_size == 100:
+			range = 510
+
+		print(f"この車の満充電時の航続距離は約{range}kmです。")
 
 
-my_used_car = Car('subaru', 'outback', 2015)
-print(my_used_car.get_descriptive_name())
+class ElectricCar(Car):
+	"""電気自動車に特有の情報を表すクラス"""
 
-my_used_car.update_odometer(23_500)
-my_used_car.read_odometer()
-
-my_used_car.increment_odometer(100)
-my_used_car.read_odometer()
+	def __init__(self, make, model, year):
+		"""
+		親クラスの属性を初期化する
+		次に電気自動車に特有の属性を初期化する
+		"""
+		super().__init__(make, model, year)
+		self.battery = Battery()
